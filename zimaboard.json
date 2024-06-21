@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "type": 1,
+      "title": "Plex Media Server",
+      "description": "Plex Media Server",
+      "categories": [
+        "multimedia"
+      ],
+      "platform": "linux",
+      "logo": "https://www.plex.tv/wp-content/themes/plex/assets/img/plex-logo.svg",
+      "image": "plexinc/pms-docker",
+      "ports": [
+        "32400:32400/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "${VOLUME_MEDIA}",
+          "bind": "/data"
+        },
+        {
+          "container": "${VOLUME_CONFIG}",
+          "bind": "/config"
+        },
+        {
+          "container": "${VOLUME_TRANSCODE}",
+          "bind": "/transcode"
+        }
+      ],
+      "env": [
+        {
+          "name": "VOLUME_CONFIG",
+          "label": "Path to ./config",
+          "default": "/Users/andreabilancione/zimaboard/plex/config"
+        },
+        {
+          "name": "VOLUME_MEDIA",
+          "label": "Path to ./media",
+          "default": "/Users/andreabilancione/zimaboard/plex/media"
+        },
+        {
+          "name": "VOLUME_TRANSCODE",
+          "label": "Path to ./transcode",
+          "default": "/Users/andreabilancione/zimaboard/plex/transcode"
+        },
+        {
+          "name": "PLEX_CLAIM",
+          "label": "Plex Claim: https://www.plex.tv/claim/"
+        },
+        {
+          "name": "TZ",
+          "label": "Timezone",
+          "default": "Europe/Rome"
+        },
+        {
+          "name": "PLEX_UID",
+          "label": "Plex UID",
+          "default": "1000"
+        },
+        {
+          "name": "PLEX_GID",
+          "label": "Plex GID",
+          "default": "1000"
+        }
+      ]
+    }
+  ]
+}
